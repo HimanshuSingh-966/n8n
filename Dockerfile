@@ -1,11 +1,14 @@
 # Use official n8n image
 FROM n8nio/n8n:latest
 
-# Set working directory
-WORKDIR /data
+# Temporarily switch to root to gain permission for npm install
+USER root
 
-# Optional safeguard: reinstall n8n in case Render lost it
+# Reinstall n8n globally (self-healing safeguard)
 RUN npm install -g n8n@latest
+
+# Switch back to non-root user for security
+USER node
 
 # Copy environment at build time
 ENV DB_TYPE=postgresdb
