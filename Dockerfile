@@ -14,4 +14,4 @@ ENV PORT=5678
 ENV WEBHOOK_URL=https://n8n-drjv.onrender.com
 
 # Start n8n
-CMD ["tini", "--", "n8n"]
+CMD ["n8n"]
